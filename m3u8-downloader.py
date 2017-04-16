@@ -5,13 +5,6 @@ import glob
 import natsort
 import shutil
 
-"""
-SETUP:
-npm install -g download-m3u8
-pip install natsort
-
-"""
-
 def main(args):
     outfile = 'outputbymisha.mp4'
     arg1 = args[0]
@@ -27,12 +20,7 @@ def main(args):
         while line.startswith("#"):
             line = f.readline()
 
-    print (line)
-    print ("path: "+pre+line)
-
-    #exit()
     os.system("download-m3u8 "+pre+line)
-    #files = glob.glob('./cf.c.ooyala.com/*/*/*.ts')
 
     tsFiles=[]
     for root, dirs, files in os.walk('./'):
@@ -40,8 +28,6 @@ def main(args):
             if myFile.endswith('.ts'):
                 tsFiles.append(os.path.join(root, myFile))
 
-    #exit()
-    #files = glob.glob("./*.ts")
     l = list(map(lambda x: "file '" + x + "'", tsFiles))
     sortedl = natsort.natsorted(l)
 
